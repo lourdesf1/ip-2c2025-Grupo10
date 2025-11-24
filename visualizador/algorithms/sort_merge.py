@@ -43,5 +43,3 @@ listaNumerosAleatorios = [5, 2, 1, 8 , 4]
 print("Lista sin ordenar: " + str(listaNumerosAleatorios))
 listaNumerosAleatorios = mergeSort(listaNumerosAleatorios)
 print("Lista ordenada; " + str(listaNumerosAleatorios))
-
-            

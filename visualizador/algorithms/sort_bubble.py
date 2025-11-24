@@ -17,21 +17,25 @@ def step():
     global items, n, i, j
     if i >= n - 1:
         return{"done": True}
-    # hola1) Elegir índices a y b a comparar en este micro-paso (según tu Bubble).
+    # Elegir índices a y b a comparar en este micro-paso (según tu Bubble).
     a = j
-    b = j + 1
-    # 2) Si corresponde, hacer el intercambio real en items[a], items[b] y marcar swap=True.
-    swap = False
-    if items[a] > items[b]:
-        items[a], items[b] = items[b], items[a]
-        swap = "True"
-    # 3) Avanzar punteros (preparar el próximo paso).
-    j += 1
-    if j >= n - i - 1:
-        i += 1
+    b = j + 1 #Adyacente del indice, elemento de al lado.
+    # Si corresponde, hacer el intercambio real en items[a], items[b] y marcar swap=True.
+    if i < n-1:
+        if items[a] > items[b]: #Sin ciclos for porque funciona "paso a paso"
+            items[a], items[b] = items[b], items[a] #Intercambio de menor a mayor.
+            swap = True
+        else:
+            swap = False
+
+    j += 1 #Aumento el indice
+
+    if j >= n - i - 1: #Si hay que reiniciar el indice
         j = 0
-    # 4) Devolver {"a": a, "b": b, "swap": swap, "done": False}.
+        i += 1
+    # Devolver {"a": a, "b": b, "swap": swap, "done": False}.
     return{"a": a, "b": b, "swap": swap, "done": False}
-    
     # Cuando no queden pasos, devolvé {"done": True}.
-    return {"done": True}
+    if i >= n-1:
+        return {"done": True}
+
