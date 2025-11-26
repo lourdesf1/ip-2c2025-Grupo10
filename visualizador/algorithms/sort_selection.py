@@ -18,10 +18,8 @@ def init(vals):
 
 def step():
     global items, n, i, j, min_idx, fase
-
     if i >= n:
         return {"done": True}
-
     if fase == "buscar":
         if j < n:
             # Todavía buscando el mínimo en la parte no ordenada
@@ -36,7 +34,6 @@ def step():
             fase = "swap"
             # La próxima llamada a step ejecutará la fase "swap"
             return step() # Llamada recursiva para ejecutar el swap inmediatamente
-
     elif fase == "swap":
         if min_idx != i:
             # Realizar el único swap
@@ -45,14 +42,12 @@ def step():
             result = {"a": i, "b": min_idx, "swap": True, "done": False}
         else:
             # No se necesita swap (el elemento ya está en su lugar)
-            result = {"a": i, "b": i, "swap": False, "done": False}
-        
+            result = {"a": i, "b": i, "swap": False, "done": False}       
         # Prepararse para la siguiente iteración
         i += 1
         j = i + 1
         min_idx = i
         fase = "buscar"
         return result
-
     # Caso por defecto, aunque no debería ser alcanzado
     return {"done": True}
